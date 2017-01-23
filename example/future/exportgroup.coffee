@@ -1,17 +1,10 @@
 module.exports = (robot) ->
   exportgroup = (options) ->
-    console.log "cli( exportgroup        \
-                      -hostname #{hostname} \
-                      -tenant #{tenant}   \
-                      -project #{project} \
-                      -varray #{varray}   \
-                      #{options} )"
-#    return robot.cli( "exportgroup        \
-#                      -hostname #{hostname} \
-#                      -tenant #{tenant}   \
-#                      -project #{project} \
-#                      -varray #{varray}   \
-#                      #{options}" )
+    return robot.cli( "exportgroup  \"#{options}\"  \
+                      -hostname \"#{hostname}\"     \
+                      -tenant \"#{tenant}\"         \
+                      -project \"#{project}\"       \
+                      -varray \"#{varray}\"" )
 
   robot.commands.push "hubot coprhd list export-group"
   robot.respond /((list|ls) (exportgroup|export-group))(s|)$/i, (msg) ->

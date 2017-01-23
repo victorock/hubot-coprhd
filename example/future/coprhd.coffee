@@ -10,24 +10,24 @@ class CoprHD
     this
 
   url: (newVal) ->
-      @properties.url = newVal
-      this
+    @properties.url = newVal
+    this
 
   username: (newVal) ->
-      @properties.username = newVal
-      this
+    @properties.username = newVal
+    this
 
   password: (newVal) ->
-      @properties.password = newVal
-      this
+    @properties.password = newVal
+    this
 
   cookieDir: (newVal) ->
-      @properties.cookieDir = newVal
-      this
+    @properties.cookieDir = newVal
+    this
 
   cookieFile: (newVal) ->
-      @properties.cookieFile = newVal
-      this
+    @properties.cookieFile = newVal
+    this
 
   cli: (options) ->
     command = "/opt/storageos/cli/bin/viprcli #{options}"
