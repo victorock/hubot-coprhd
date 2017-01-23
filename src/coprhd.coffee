@@ -19,11 +19,17 @@ if !(fs.existsSync coprhd_bin) && !(process.env.HUBOT_COPRHD_DEV)
   console.log "Confirm if the package is installed properly"
   process.exit(1)
 
+## Function: Wrapper for the Command-line
 coprhdCli = (options) ->
   exec = require('child_process').exec
   exec ("#{coprhd_bin} #{options}"), (error, stdout, stderr) ->
-    return { error: error, stdout: stdout, stderr: stderr }
+    console.error "coprhd: #{error}"  if error
+    console.error "coprhd: #{stderr}" if stderr
+    console.log   "coprhd: #{stdout}" if stdout
 
+    return [ error, stdout, stderr ]
+
+## Function: Check if user can access
 canAccess = (robot, user) ->
   return true if process.env.HUBOT_COPRHD_DEV
 
@@ -40,11 +46,16 @@ module.exports = (robot) ->
   robot.commands.push "hubot coprhd cli exec <command>"
   robot.respond /((client|cli) exec) (.*)$/i, (msg) ->
     unless canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact an admin."
+      msg.reply "You cannot access this feature. Please contact an admin."
       return
 
     args = msg.match[2].trim()
 
     msg.reply "executing..."
-    msg.reply coprhdCli( "#{command}" )
+
+    [ error, stdout, stderr ] = coprhdCli( "#{command}" )
+
+    msg.reply "Error: #{error}" if error
+    msg.reply "Stderr: #{stderr}" if stderr
+    msg.reply "#{stdout}" if stdout
     msg.reply "Done :)"
