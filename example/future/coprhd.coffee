@@ -1,272 +1,272 @@
 # Data Model
 class CoprHD
-    constructor: (url, username, password)  ->
-      @properties =
-        url: url
-        username: username
-        password: password
-        cookieDir: '/tmp'
-        cookieFile: 'cookie-root@provider'
+  constructor: (url, username, password)  ->
+    @properties =
+      url: url
+      username: username
+      password: password
+      cookieDir: '/tmp'
+      cookieFile: 'cookie-root@provider'
+    this
+
+  url: (newVal) ->
+      @properties.url = newVal
       this
 
-    url: (newVal) ->
-        @properties.url = newVal
-        this
-
-    username: (newVal) ->
-        @properties.username = newVal
-        this
-
-    password: (newVal) ->
-        @properties.password = newVal
-        this
-
-    cookieDir: (newVal) ->
-        @properties.cookieDir = newVal
-        this
-
-    cookieFile: (newVal) ->
-        @properties.cookieFile = newVal
-        this
-
-    cli: (options) ->
-      command = "/opt/storageos/cli/bin/viprcli #{options}"
-      run = require('child_process').exec
-      run command, (error, stdout, stderr) ->
-        return {  error: error
-                  stdout: stdout
-                  stderr: stderr
-                }
-
-    login: ->
-      return @cli( "authenticate                      \
-                    -hostname #{@properties.url}      \
-                    -username #{@properties.username} \
-                    -d #{@properties.cookieDir}       \
-                    -p #{@properties.password}" )
-
-  class VArray
-    constructor: (name) ->
-      @properties =
-        name: name
+  username: (newVal) ->
+      @properties.username = newVal
       this
 
-    name: (newVal) ->
-      @properties.name = newVal
+  password: (newVal) ->
+      @properties.password = newVal
       this
 
-    list: ->
+  cookieDir: (newVal) ->
+      @properties.cookieDir = newVal
       this
 
-    show: ->
+  cookieFile: (newVal) ->
+      @properties.cookieFile = newVal
       this
 
-    create: ->
-      this
+  cli: (options) ->
+    command = "/opt/storageos/cli/bin/viprcli #{options}"
+    run = require('child_process').exec
+    run command, (error, stdout, stderr) ->
+      return {  error: error
+                stdout: stdout
+                stderr: stderr
+              }
 
-    update: ->
-      this
+  login: ->
+    return @cli( "authenticate                      \
+                  -hostname #{@properties.url}      \
+                  -username #{@properties.username} \
+                  -d #{@properties.cookieDir}       \
+                  -p #{@properties.password}" )
 
+class VArray
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-  class Volume
-    constructor: (name, size) ->
-      @properties =
-        name: name
-        size: size
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  list: ->
+    this
 
-    list: ->
-      @cli
-      this
+  show: ->
+    this
 
-    show: ->
-      this
+  create: ->
+    this
 
-    create: ->
-      this
-
-    update: ->
-      this
-
-
-  class Snapshot
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
-
-    name: (newVal) ->
-      @properties.name = newVal
-      this
-
-    list: ->
-      this
-
-    show: ->
-      this
-
-    create: ->
-      this
-
-    update: ->
-      this
+  update: ->
+    this
 
 
-  class Project
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
+class Volume
+  constructor: (name, size) ->
+    @properties =
+      name: name
+      size: size
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    list: ->
-      this
+  list: ->
+    @cli
+    this
 
-    show: ->
-      this
+  show: ->
+    this
 
-    create: ->
-      this
+  create: ->
+    this
 
-    update: ->
-      this
+  update: ->
+    this
 
 
-  class Tenant
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
+class Snapshot
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    list: ->
-      this
+  list: ->
+    this
 
-    show: ->
-      this
+  show: ->
+    this
 
-    create: ->
-      this
+  create: ->
+    this
 
-    update: ->
-      this
+  update: ->
+    this
 
-  class Host
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+class Project
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    list: ->
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    show: ->
-      this
+  list: ->
+    this
 
-    create: ->
-      this
+  show: ->
+    this
 
-    update: ->
-      this
+  create: ->
+    this
 
-  class Initiator
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
+  update: ->
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
 
-    list: ->
-      this
+class Tenant
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    show: ->
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    create: ->
-      this
+  list: ->
+    this
 
-    update: ->
-      this
+  show: ->
+    this
 
-  class Cluster
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
+  create: ->
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  update: ->
+    this
 
-    list: ->
-      this
+class Host
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    show: ->
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    create: ->
-      this
+  list: ->
+    this
 
-    update: ->
-      this
+  show: ->
+    this
 
-  class Filesystem
-    constructor: (name, size) ->
-      @properties =
-        name: name
-      this
+  create: ->
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  update: ->
+    this
 
-    list: ->
-      this
+class Initiator
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    show: ->
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    create: ->
-      this
+  list: ->
+    this
 
-    update: ->
-      this
+  show: ->
+    this
 
-  class Exportgroup
-    constructor: (name) ->
-      @properties =
-        name: name
-      this
+  create: ->
+    this
 
-    name: (newVal) ->
-      @properties.name = newVal
-      this
+  update: ->
+    this
 
-    list: ->
-      this
+class Cluster
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
 
-    show: ->
-      this
+  name: (newVal) ->
+    @properties.name = newVal
+    this
 
-    create: ->
-      this
+  list: ->
+    this
 
-    update: ->
-      this
+  show: ->
+    this
+
+  create: ->
+    this
+
+  update: ->
+    this
+
+class Filesystem
+  constructor: (name, size) ->
+    @properties =
+      name: name
+    this
+
+  name: (newVal) ->
+    @properties.name = newVal
+    this
+
+  list: ->
+    this
+
+  show: ->
+    this
+
+  create: ->
+    this
+
+  update: ->
+    this
+
+class Exportgroup
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
+
+  name: (newVal) ->
+    @properties.name = newVal
+    this
+
+  list: ->
+    this
+
+  show: ->
+    this
+
+  create: ->
+    this
+
+  update: ->
+    this
