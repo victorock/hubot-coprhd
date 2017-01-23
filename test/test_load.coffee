@@ -3,7 +3,7 @@ sinon = require 'sinon'
 fs = require 'fs'
 path = require 'path'
 
-describe 'hubot-aws', ->
+describe 'hubot-coprhd', ->
   beforeEach ->
     @robot =
       loadFile: sinon.spy()
@@ -17,7 +17,7 @@ describe 'hubot-aws', ->
     @app(@robot)
 
   it 'can import scripts', ->
-    scripts_path = path.resolve __dirname, '../scripts'
+    scripts_path = path.resolve __dirname, '../src'
     false unless fs.existsSync scripts_path
 
     for category_file in fs.readdirSync(scripts_path)

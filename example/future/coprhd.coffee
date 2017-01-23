@@ -30,7 +30,7 @@ class CoprHD
         this
 
     cli: (options) ->
-      command = "/opt/storageos/bin/viprcli #{options}"
+      command = "/opt/storageos/cli/bin/viprcli #{options}"
       run = require('child_process').exec
       run command, (error, stdout, stderr) ->
         return {  error: error
@@ -56,9 +56,7 @@ class CoprHD
       this
 
     list: ->
-      @login() ->
-        @cli("varray list") ->
-
+      this
 
     show: ->
       this
@@ -82,6 +80,7 @@ class CoprHD
       this
 
     list: ->
+      @cli
       this
 
     show: ->

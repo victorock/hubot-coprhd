@@ -1,4 +1,11 @@
 module.exports = (robot) ->
+  host = (options) ->
+    return robot.cli( "host               \
+                      -tenant #{tenant}   \
+                      -project #{project} \
+                      -varray #{varray}   \
+                      #{options}" )
+  
   robot.commands.push "hubot coprhd new linux filesystem <name> of <volume> on <host> at <mount point>"
   robot.respond /(create|new) linux filesystem (.*) on (.*) at (.*)$/i, (msg) ->
     msg.reply msg.random friendly "...action not implemented yet..."

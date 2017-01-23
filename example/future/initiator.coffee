@@ -1,10 +1,8 @@
 module.exports = (robot) ->
   initiator = (options) ->
-    return robot.cli( "initiator             \
-                      -tenant #{tenant}   \
-                      -project #{project} \
-                      -varray #{varray}   \
-                      #{options}" )
+    return robot.cli( "initiator \"#{options}\" \
+                      -tenant \"#{tenant}\"     \
+                      -project \"#{project}\"" )
 
   robot.commands.push "hubot coprhd find initiator <name>"
   robot.respond /(find|search) initiator (.*)$/i, (msg) ->
@@ -21,7 +19,7 @@ module.exports = (robot) ->
     name = msg.match[2].trim()
     msg.reply msg.random friendly "...showing #{name}..."
     msg.reply robot.initiator(  "show \
-                                -name #{name}" )
+                                -name \"#{name}\"" )
 
   robot.commands.push "hubot coprhd new initiator <name> wwn <wwn> pwwn <pwwn> - FC Hosts"
   robot.respond /(create|new) (initiator)) (.*) wwn (.*) wwpn (.*)$/i, (msg) ->
@@ -29,11 +27,11 @@ module.exports = (robot) ->
     wwn = msg.match[3].trim()
     pwwn = msg.match[4].trim()
     msg.reply msg.random friendly "...creating #{name}..."
-    msg.reply robot.initiator(  "create       \
-                                -hostlabel #{name} \
-                                -wwn #{wwn}   \
-                                -pwwn #{pwwn} \
-                                -type fc \
+    msg.reply robot.initiator(  "create                 \
+                                -hostlabel \"#{name}\"  \
+                                -wwn \"#{wwn}\"         \
+                                -pwwn \"#{pwwn}\"       \
+                                -type fc                \
                                 -sync" )
 
   robot.commands.push "hubot coprhd new initiator <name> iqn <iqn> - iSCSI Hosts"
@@ -42,8 +40,8 @@ module.exports = (robot) ->
     iqn = msg.match[3].trim()
     msg.reply msg.random friendly "...creating #{name}..."
     msg.reply robot.initiator(  "create       \
-                                -hostlabel #{name} \
-                                -pwwn #{iqn} \
+                                -hostlabel \"#{name}\" \
+                                -pwwn \"#{iqn}\" \
                                 -type iscsi \
                                 -sync" )
 
@@ -52,5 +50,5 @@ module.exports = (robot) ->
     name = msg.match[2].trim()
     msg.reply msg.random friendly "...action not implemented yet..."
     msg.reply robot.initiator(  "delete       \
-                                -name #{name} \
+                                -name \"#{name}\" \
                                 -sync" )

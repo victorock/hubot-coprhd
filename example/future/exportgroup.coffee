@@ -1,11 +1,13 @@
 module.exports = (robot) ->
   exportgroup = (options) ->
     console.log "cli( exportgroup        \
+                      -hostname #{hostname} \
                       -tenant #{tenant}   \
                       -project #{project} \
                       -varray #{varray}   \
                       #{options} )"
 #    return robot.cli( "exportgroup        \
+#                      -hostname #{hostname} \
 #                      -tenant #{tenant}   \
 #                      -project #{project} \
 #                      -varray #{varray}   \
@@ -34,7 +36,7 @@ module.exports = (robot) ->
   robot.commands.push "hubot coprhd delete export-group <name>"
   robot.respond /((delete|remove) (exportgroup|export-group)) (.*)$/i, (msg) ->
     name = msg.match[2].trim()
-    msg.reply msg.random friendly "...action not implemented yet..."
+    msg.reply msg.random friendly "...removing..."
     msg.reply robot.exportgroup(  "delete       \
                                   -name #{name} \
                                   -sync" )
@@ -43,7 +45,7 @@ module.exports = (robot) ->
   robot.respond /((update|change) (exportgroup|export-group)) (.*) add host (.*)$/i, (msg) ->
     name = msg.match[2].trim()
     host = msg.match[3].trim()
-    msg.reply msg.random friendly "...action not implemented yet..."
+    msg.reply msg.random friendly "...updating..."
     msg.reply robot.exportgroup(  "add_host           \
                                   -name #{name}       \
                                   -hostlabel #{host}  \
@@ -63,7 +65,7 @@ robot.commands.push "hubot coprhd delete initiator <name> add volume <volume>"
 robot.respond /((update|change) (exportgroup|export-group)) (.*) add volume (.*)$/i, (msg) ->
   name = msg.match[2].trim()
   volume = msg.match[3].trim()
-  msg.reply msg.random friendly "...action not implemented yet..."
+  msg.reply msg.random friendly "...updating..."
   msg.reply robot.exportgroup(  "add_vol              \
                                 -name #{name}         \
                                 -volume #{volume}:-1  \
