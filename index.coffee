@@ -1,10 +1,12 @@
-fs   = require 'fs'
+fs = require 'fs'
 path = require 'path'
 
-module.exports = (robot) ->
-  scripts_path = path.resolve __dirname, 'src'
-  if fs.existsSync scripts_path
-    for category_file in fs.readdirSync(scripts_path)
-      category_path = path.resolve scripts_path, category_file
-      if fs.existsSync category_path
-        robot.loadFile category_path, file for file in fs.readdirSync(category_path)
+module.exports = (robot, scripts) ->
+  scriptsPath = path.resolve(__dirname, 'src')
+  fs.exists scriptsPath, (exists) ->
+    if exists
+      for script in fs.readdirSync(scriptsPath)
+        if scripts? and '*' not in scripts
+          robot.loadFile(scriptsPath, script) if script in scripts
+        else
+          robot.loadFile(scriptsPath, script)

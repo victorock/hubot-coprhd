@@ -20,10 +20,6 @@ describe 'hubot-coprhd', ->
     scripts_path = path.resolve __dirname, '../src'
     false unless fs.existsSync scripts_path
 
-    for category_file in fs.readdirSync(scripts_path)
-      category_path = path.resolve scripts_path, category_file
-      false unless fs.existsSync category_path
-
-      for file in fs.readdirSync(category_path)
-        script = require path.resolve category_path, file unless file == 'support'
-        assert script != undefined
+    for file in fs.readdirSync(scripts_path)
+      script = require path.resolve scripts_path, file
+      assert script != undefined

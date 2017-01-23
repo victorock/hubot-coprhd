@@ -30,20 +30,10 @@ class CoprHD
     this
 
   cli: (options) ->
-    command = "/opt/storageos/cli/bin/viprcli #{options}"
-    run = require('child_process').exec
-    run command, (error, stdout, stderr) ->
-      return {  error: error
-                stdout: stdout
-                stderr: stderr
-              }
+    this
 
   login: ->
-    return @cli( "authenticate                      \
-                  -hostname #{@properties.url}      \
-                  -username #{@properties.username} \
-                  -d #{@properties.cookieDir}       \
-                  -p #{@properties.password}" )
+    this
 
 class VArray
   constructor: (name) ->

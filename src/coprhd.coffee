@@ -13,24 +13,38 @@
 
 fs   = require 'fs'
 coprhd_bin = "/opt/storageos/bin/cli/viprcli"
-unless fs.existsSync coprhd_bin && process.env.HUBOT_COPRHD_DEV
+
+if !(fs.existsSync coprhd_bin) && !(process.env.HUBOT_COPRHD_DEV)
   console.log "Missing #{coprhd_bin} file"
   console.log "Confirm if the package is installed properly"
   process.exit(1)
 
 coprhdCli = (options) ->
-  @exec = require('child_process').exec
-  @exec ("#{coprhd_bin} #{options}"), (error, stdout, stderr) ->
+  exec = require('child_process').exec
+  exec ("#{coprhd_bin} #{options}"), (error, stdout, stderr) ->
     return { error: error, stdout: stdout, stderr: stderr }
+
+canAccess = (robot, user) ->
+  return true if process.env.HUBOT_COPRHD_DEV
+
+  if robot.auth.isAdmin(user)
+    return true
+
+  role = process.env.HUBOT_COPRHD_ROLE
+  if role && robot.auth.hasRole(user, role)
+    return true
+  else
+    return false
 
 module.exports = (robot) ->
   robot.commands.push "hubot coprhd cli exec <command>"
-  robot.respond /((client|cli) exec)(.*)$/i, (msg) ->
-    unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
+  robot.respond /((client|cli) exec) (.*)$/i, (msg) ->
+    unless canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact an admin."
       return
 
     args = msg.match[2].trim()
 
-    msg.reply msg.random friendly "...executing..."
+    msg.reply "executing..."
     msg.reply coprhdCli( "#{command}" )
+    msg.reply "Done :)"

@@ -2,9 +2,16 @@
   "name": "hubot-coprhd",
   "version": "0.0.1",
   "description": "Storage Robot",
+  "author": "Victor da Costa <victorockeiro@gmail.com>",
+  "licenses": [
+     {
+       "type": "MIT",
+       "url": "http://github.com/tombell/hubot-twilio/raw/master/LICENSE"
+     }
+   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/victorock/hubot-coprhd.git"
+    "url": "https://github.com/victorock/hubot-coprhd.git"
   },
   "main": "index.coffee",
   "scripts": {
@@ -16,28 +23,25 @@
     "hubot-redis-brain": "0.0.3",
     "hubot-scripts": "^2.17.2",
     "hubot-slack": "^4.3.1",
-    "tsv": "0.2.0",
-    "async": "0.9.0",
-    "underscore": "1.8.3",
-    "cson": "3.0.1",
-    "moment": "2.13.0"
+    "hubot-auth": "^2.0.0"
   },
+  "engine": "node > 0.10.0",
   "engines": {
-    "node": "0.10.x"
+    "node": "*"
   },
   "keywords": [
     "storage",
     "hubot",
+    "coprhd",
     "hubot-scripts",
     "hubot storage",
     "hubot-coprhd",
-    "coprhd-cli"
+    "coprhd-cli",
+    "chatops"
   ],
   "bugs": {
     "url": "https://github.com/victorock/hubot-coprhd/issues"
   },
-  "author": "Victor da Costa <victorockeiro@gmail.com>",
-  "license": "Apache",
   "devDependencies": {
     "coffee-errors": "^0.8.6",
     "coffee-script": "^1.10.0",
