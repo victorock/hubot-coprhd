@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "description": "Storage Robot",
   "author": "Victor da Costa <victorockeiro@gmail.com>",
-  "licenses": [
-    {
+  "license": {
       "type": "MIT",
-      "url": "http://github.com/tombell/hubot-twilio/raw/master/LICENSE"
-    }
-  ],
+      "url": "http://github.com/victorock/hubot-coprhd/raw/master/LICENSE"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/victorock/hubot-coprhd.git"

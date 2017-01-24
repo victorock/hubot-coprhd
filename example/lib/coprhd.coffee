@@ -260,3 +260,47 @@ class Exportgroup
 
   update: ->
     this
+
+class System
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
+
+  name: (newVal) ->
+    @properties.name = newVal
+    this
+
+  list: ->
+    this
+
+  show: ->
+    this
+
+  create: ->
+    this
+
+  update: ->
+    this
+
+class Order
+  constructor: (name) ->
+    @properties =
+      name: name
+    this
+
+  name: (newVal) ->
+    @properties.name = newVal
+    this
+
+  list: ->
+    this
+
+  show: ->
+    this
+
+  create: ->
+    this
+
+  update: ->
+    this
