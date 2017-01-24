@@ -38,6 +38,13 @@ You cannot access this feature. Please contact an admin.
 ```ruby
 export HUBOT_COPRHD_DEV="true"
 ```
+
+## Todo
+
+- Make user interface more human friendly (See: [src](example/src)).
+- Create Docker image (See: [docker](example/docker)).
+- Encapsulate the cli as object (See: [lib](example/lib).
+
 ## License
 
 The MIT License (MIT)

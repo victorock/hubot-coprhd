@@ -1,22 +1,40 @@
-# VERSION               0.3
+# VERSION               0.1
 #
-# Build CoprHD-API
+# Build Hubot-CoprHD
 FROM victorock/coprhd-base:latest
 MAINTAINER "Victor da Costa" <victorockeiro@gmail.com>
+
+ENV HUBOT_SLACK_TOKEN ""
+ENV HUBOT_COPRHD_DEV ""
+ENV HUBOT_COPRHD_ROLE "COPRHD"
+
 WORKDIR /hubot
-RUN zypper --non-interactive --no-gpg-checks \
-  install --details --no-recommends --force-resolution \
-  nodejs npm npm
-RUN npm install -g hubot coffee-script
-RUN hubot --create hubot
-RUN echo "[]" > hubot/hubot-scripts.json
 
-RUN apt-get install -y git
-RUN cd hubot && npm install hubot-irc --save && npm install
+RUN zypper --non-interactive \
+  --no-gpg-checks \
+  install \
+  --details \
+  --no-recommends \
+  --force-resolution \
+  nodejs
 
-CMD[  "${STORAGEOS_DIR}/bin/apisvc${STORAGEOS_VARIANT}",
-      "file:${STORAGEOS_DIR}/conf/api-conf.xml",
-      "file:${STORAGEOS_DIR}/conf/api-emc-conf.xml",
-      "file:${STORAGEOS_DIR}/conf/api-oss-conf.xml >${STORAGEOS_DIR}/logs/apisvc.out 2>&1"]
+RUN npm install \
+  -g \
+  yo \
+  coffee-script \
+  hubot \
+  hubot-slack \
+  hubot-coprhd \
+  hubot-redis-brain \
+  hubot-help \
+  hubot-auth \
+  hubot-scripts
 
-EXPOSE[ 8080:8080, 8443:8443 ]
+RUN echo "[
+  hubot-diagnostics, \
+  hubot-help, \
+  hubot-redis-brain, \
+  hubot-coprhd \
+]" > external-scripts.json
+
+CMD[ "bin/hubot --adapter slack" ]
