@@ -16,12 +16,12 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "hubot": "2.19.0",
-    "hubot-auth": "2.0.0",
-    "hubot-help": "0.2.0",
-    "hubot-redis-brain": "0.0.3",
-    "hubot-scripts": "2.17.2",
-    "hubot-slack": "4.3.1"
+    "hubot": ">=2.19.0",
+    "hubot-auth": ">=2.0.0",
+    "hubot-help": ">=0.1.3",
+    "hubot-redis-brain": ">=0.0.3",
+    "hubot-scripts": ">=2.17.2",
+    "hubot-slack": ">=4.3.1"
   },
   "engine": "node > 0.10.0",
   "engines": {
@@ -41,16 +41,14 @@
     "url": "https://github.com/victorock/hubot-coprhd/issues"
   },
   "devDependencies": {
-    "coffee-errors": "0.8.6",
-    "coffee-script": "1.10.0",
-    "coffeelint": "1.13.0",
-    "grunt-coffeelint": "0.0.13",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-jsonlint": "1.0.4",
-    "grunt-notify": "0.4.1",
-    "grunt-release": "0.13.0",
-    "grunt-simple-mocha": "0.4.0",
-    "matchdep": "1.0.0",
-    "sinon": "1.17.1"
+    "coffee-errors": ">=0.8",
+    "coffee-script": ">=1",
+    "coffeelint": ">=1",
+    "grunt-coffeelint": ">=0.0.16",
+    "grunt-contrib-watch": ">=1",
+    "grunt-jsonlint": ">=1",
+    "grunt-simple-mocha": ">=0.4",
+    "matchdep": ">=1.0",
+    "sinon": ">=1.17"
   }
 }
